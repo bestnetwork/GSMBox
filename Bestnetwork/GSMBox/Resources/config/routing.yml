@@ -1,0 +1,3 @@
+gsm_box:
+    path:      /gsm
+    defaults:  { _controller: GSMBoxBundle:Default:index }

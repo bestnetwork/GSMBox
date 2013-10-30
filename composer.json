@@ -19,7 +19,7 @@
     },
     "autoload": {
         "psr-0": {
-            "Bestnetwork\\GSMGateway\\": ""
+            "Bestnetwork\\GSMBox\\": ""
         }
     },
     "minimum-stability": "dev",

@@ -1,0 +1,7 @@
+parameters:
+    payment.plugin_manager.class: Bestnetwork\GSMBox\PluginManager\PluginManager
+
+services:
+    payment.plugin_manager:
+        class: %payment.plugin_manager.class%
+        public: false
