@@ -1,0 +1,32 @@
+{
+    "name": "bestnetwork/gsm-gateway",
+    "description": "Generic GSM Gateway Managwer",
+    "keywords": ["symfony2", "GSM Gateway"],
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "authors": [
+    	{
+    		"name": "Bestnetwork",
+    		"email": "reparto.sviluppo@bestnetwork.it"
+		}
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "symfony/framework-bundle" : "~2.3"
+    },
+    "suggest": {
+        "bestnetwork/2n-voiceblue": "0.0.*@dev"
+    },
+    "autoload": {
+        "psr-0": {
+            "Bestnetwork\\GSMGateway\\": ""
+        }
+    },
+    "minimum-stability": "dev",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.0-dev"
+        }
+    }
+}
+
