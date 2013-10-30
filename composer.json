@@ -1,7 +1,7 @@
 {
-    "name": "bestnetwork/gsm-gateway",
-    "description": "Generic GSM Gateway Managwer",
-    "keywords": ["symfony2", "GSM Gateway"],
+    "name": "bestnetwork/gsm-box",
+    "description": "Generic GSM Box Manager",
+    "keywords": ["symfony2", "GSM Gateway", "GSM Box"],
     "type": "symfony-bundle",
     "license": "MIT",
     "authors": [
