@@ -12,17 +12,19 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
-class GSMBoxExtension extends Extension
-{
+class GSMBoxExtension extends Extension {
+    
     /**
      * {@inheritDoc}
      */
-    public function load(array $configs, ContainerBuilder $container)
-    {
+    public function load( array $configs, ContainerBuilder $container ){
+        $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('services.yml');
+
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('services.yml');
+        $container->setParameter('gsm_box.default_gateway', $config['default_gateway']);
+        $container->setParameter('gsm_box.gateways', $config['gateways']);
     }
 }

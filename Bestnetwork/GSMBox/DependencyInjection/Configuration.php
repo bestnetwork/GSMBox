@@ -21,9 +21,13 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('gsm_box');
 
         $rootNode
-            ->fixXmlConfig('gateway')
             ->beforeNormalization()
-                ->ifTrue( function( $v ){ return is_array($v) && !array_key_exists('gateways', $v); })
+                ->ifTrue( function( $v ){
+                    return is_array($v)
+                        && !array_key_exists('default_gateway', $v)
+                        && !array_key_exists('gateways', $v)
+                        && !array_key_exists('gateway', $v);
+                })
                 ->then( function( $v ){
                     $gateway = array();
                     
@@ -44,8 +48,15 @@ class Configuration implements ConfigurationInterface
             ->children()
                 ->scalarNode('default_gateway')->defaultValue('default')->end()
                 ->arrayNode('gateways')
+                    ->isRequired()
                     ->requiresAtLeastOneElement()
                     ->useAttributeAsKey('name')
+                    ->beforeNormalization()
+                        ->ifString()
+                        ->then( function( $v ){
+                            return array('manager'=> $v);
+                        })
+                    ->end()
                     ->prototype('array')
                         ->children()
                             ->scalarNode('host')->defaultValue('localhost')->end()
@@ -53,11 +64,12 @@ class Configuration implements ConfigurationInterface
                             ->integerNode('timeout')->defaultValue(10)->end()
                             ->scalarNode('username')->defaultNull()->end()
                             ->scalarNode('password')->defaultNull()->end()
-                            ->scalarNode('manager')->end()
+                            ->scalarNode('manager')->isRequired()->end()
                         ->end()
                     ->end()
                 ->end()
             ->end()
+            ->fixXmlConfig('gateway', 'gateways')
         ;
 
         return $treeBuilder;

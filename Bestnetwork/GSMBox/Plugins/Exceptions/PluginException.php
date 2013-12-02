@@ -2,7 +2,7 @@
 
 namespace Bestnetwork\GSMBox\Plugins\Exceptions;
 
-use JMS\Payment\CoreBundle\Exception\GSMBoxException;
+use Bestnetwork\GSMBox\Exceptions\GSMBoxException;
 
 class PluginException extends GSMBoxException {
 }

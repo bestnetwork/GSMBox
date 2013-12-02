@@ -1,7 +1,16 @@
 parameters:
-    payment.plugin_manager.class: Bestnetwork\GSMBox\PluginManager\PluginManager
+    gsm_box.gateway.abstract.class: Bestnetwork\GSMBox\Plugins\AbstractGatewayManagerPlugin
+    gsm_box.codec.gsm0338.class: Bestnetwork\GSMBox\Codec\GSM0338Codec
+    gsm_box.message.entity.class: Bestnetwork\GSMBox\Entity\Message
 
 services:
-    payment.plugin_manager:
-        class: %payment.plugin_manager.class%
-        public: false
+    gsm_box.gateway.abstract:
+        class: %gsm_box.gateway.abstract.class%
+        abstract: true
+        
+    gsm_box.codec.gsm0338:
+        class: %gsm_box.codec.gsm0338.class%
+        tags: [{name: gsm_box.codec}]
+        
+    gsm_box.message.entity:
+        class: %gsm_box.message.entity.class%
